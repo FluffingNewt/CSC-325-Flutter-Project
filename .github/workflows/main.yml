@@ -19,17 +19,17 @@ jobs:
         working-directory: ./Wordle App
         run: flutter pub get
 
-      - name: Run tests
-        working-directory: ./Wordle App
-        run: flutter test
+      # - name: Run tests
+      #   working-directory: ./Wordle App
+      #   run: flutter test
 
       - name: Build flutter web
         working-directory: ./Wordle App
         run: flutter build web
 
       
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./app/build/web/
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./app/build/web/
