@@ -20,11 +20,11 @@ jobs:
         run: flutter pub get
 
       - name: Run tests
-        working-directory: ./app
+        working-directory: ./Wordle App
         run: flutter test
 
       - name: Build flutter web
-        working-directory: ./app
+        working-directory: ./Wordle App
         run: flutter build web
 
       
