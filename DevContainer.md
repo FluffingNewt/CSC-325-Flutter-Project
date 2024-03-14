@@ -29,7 +29,7 @@ The DevContainer seamlessly integrates with Visual Studio Code (VS Code), allowi
 
 ## Usage
 Using the DevContainer for development is straightforward given that all previous requrements are met:
-1. Clone the project repository.
+1. Clone the project repository (https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=webui).
 2. Open the project directory in Visual Studio Code.
 3. When prompted, click on "__Reopen in Container__" to open the project within the DevContainer environment.
 4. Start coding! Edit your code as usual within VS Code.
