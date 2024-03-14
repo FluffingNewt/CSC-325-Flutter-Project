@@ -16,7 +16,7 @@ jobs:
           channel: 'stable'
 
       - name: install dependencies
-        working-directory: ./app
+        working-directory: ./"Wordle App"
         run: flutter pub get
 
       - name: Run tests
@@ -28,8 +28,8 @@ jobs:
         run: flutter build web
 
       
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./app/build/web/
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./app/build/web/
