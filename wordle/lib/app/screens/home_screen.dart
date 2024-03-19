@@ -31,24 +31,25 @@ class ScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          'Wordle',
-          style: TextStyle(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 4
-          ),
-        )
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            child: Text(
+              'Wordle',
+              style: TextStyle(
+                fontSize: 52,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 4,
+            ))
+          ),
+
           Board(board: board),
+
           const SizedBox(height: 80),
+
           Keyboard(onKeyTapped: onKeyTapped,
                    onDeleteTapped: onDeleteTapped,
                    onEnterTapped: onEnterTapped,
