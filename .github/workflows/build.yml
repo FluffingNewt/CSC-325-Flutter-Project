@@ -28,7 +28,7 @@ jobs:
         working-directory: ./wordle
         run: flutter test
 
-      # Builds web version
+      # Builds Web Version
       - name: Build flutter web
         working-directory: ./wordle
         run: flutter build web
