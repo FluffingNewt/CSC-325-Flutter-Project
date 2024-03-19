@@ -23,9 +23,9 @@ jobs:
         working-directory: ./app
         run: flutter pub get
 
-      # - name: Run tests
-      #   working-directory: ./Wordle App
-      #   run: flutter test
+      - name: Run tests
+        working-directory: ./wordle
+        run: flutter test
 
       # - name: Build flutter web
       #   working-directory: ./Wordle App
