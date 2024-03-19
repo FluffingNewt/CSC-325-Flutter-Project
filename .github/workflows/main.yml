@@ -27,9 +27,9 @@ jobs:
         working-directory: ./wordle
         run: flutter test
 
-      # - name: Build flutter web
-      #   working-directory: ./Wordle App
-      #   run: flutter build web
+      - name: Build flutter web
+        working-directory: ./wordle
+        run: flutter build web
 
       
       # - name: Deploy
