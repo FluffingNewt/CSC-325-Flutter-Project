@@ -20,7 +20,7 @@ jobs:
 
       # Makes sure all Flutter dependancies are installed
       - name: install app dependencies
-        working-directory: ./app
+        working-directory: ./wordle
         run: flutter pub get
 
       - name: Run tests
