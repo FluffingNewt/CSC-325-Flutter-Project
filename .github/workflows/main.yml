@@ -20,20 +20,15 @@ jobs:
 
       # Makes sure all Flutter dependancies are installed
       - name: install app dependencies
-        working-directory: ./app
+        working-directory: ./wordle
         run: flutter pub get
 
-      # - name: Run tests
-      #   working-directory: ./Wordle App
-      #   run: flutter test
+      # Runs Smoke Tests
+      - name: Run tests
+        working-directory: ./wordle
+        run: flutter test
 
-      # - name: Build flutter web
-      #   working-directory: ./Wordle App
-      #   run: flutter build web
-
-      
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./app/build/web/
+      # Builds web version
+      - name: Build flutter web
+        working-directory: ./wordle
+        run: flutter build web

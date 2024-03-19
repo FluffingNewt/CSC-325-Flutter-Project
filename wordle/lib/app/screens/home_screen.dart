@@ -3,8 +3,6 @@ import 'package:wordle/app/data/colors.dart';
 import 'dart:math';
 import 'package:wordle/app/wordle.dart';
 
-import 'dart:developer' as bob;
-
 enum GameStatus {playing, submitting, lost, won}
 
 class HomeScreen extends StatefulWidget {
@@ -29,33 +27,68 @@ class ScreenState extends State<HomeScreen> {
   final Set<Letter> keyboardLetters = {};
 
   @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: [
+
+  //         const Padding(
+  //           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+  //           child: Text(
+  //             'Wordle',
+  //             style: TextStyle(
+  //               fontSize: 52,
+  //               fontWeight: FontWeight.bold,
+  //               letterSpacing: 4,
+  //           ))
+  //         ),
+
+  //         Board(board: board),
+
+  //         const SizedBox(height: 80),
+
+  //         Keyboard(onKeyTapped: onKeyTapped,
+  //                  onDeleteTapped: onDeleteTapped,
+  //                  onEnterTapped: onEnterTapped,
+  //                  letters: keyboardLetters)
+  //       ],
+  //     )
+  //   );
+  // }
+
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-            child: Text(
-              'Wordle',
-              style: TextStyle(
-                fontSize: 52,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 4,
-            ))
-          ),
-
-          Board(board: board),
-
-          const SizedBox(height: 80),
-
-          Keyboard(onKeyTapped: onKeyTapped,
+      appBar: AppBar(
+        title: const Text('CSC 325'),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                child: Text(
+                  'Wordle',
+                  style: TextStyle(
+                    fontSize: 52,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 4,
+                  ),
+                ),
+              ),
+              Board(board: board),
+              const SizedBox(height: 80),
+            
+              Keyboard(onKeyTapped: onKeyTapped,
                    onDeleteTapped: onDeleteTapped,
                    onEnterTapped: onEnterTapped,
                    letters: keyboardLetters)
-        ],
-      )
+            ],
+          ),
+        ),
+      ),
     );
   }
 
