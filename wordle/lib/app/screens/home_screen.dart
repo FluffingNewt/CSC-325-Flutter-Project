@@ -3,6 +3,8 @@ import 'package:wordle/app/data/colors.dart';
 import 'dart:math';
 import 'package:wordle/app/wordle.dart';
 
+import 'dart:developer' as bob;
+
 enum GameStatus {playing, submitting, lost, won}
 
 class HomeScreen extends StatefulWidget {
@@ -133,9 +135,9 @@ class ScreenState extends State<HomeScreen> {
         SnackBar(
           dismissDirection: DismissDirection.none,
           duration: const Duration(days: 1),
-          backgroundColor: correctColor,
+          backgroundColor: Color.fromARGB(255, 154, 42, 42),
           content: Text(
-            'You lost:( Solution: ${solution.wordString})',
+            'You lost... Solution: ${solution.wordString})',
             style: const TextStyle(color: Colors.white),
           ),
           action: SnackBarAction(
@@ -160,10 +162,10 @@ class ScreenState extends State<HomeScreen> {
       board
         ..clear()
         ..addAll(
-          List.generate(6, (i) => Word(letters: List.generate(5, (i) => Letter.empty())))
+          List.generate(6, (_) => Word(letters: List.generate(5, (_) => Letter.empty())))
         );
 
-      solution = Word.fromString(fiveLetterWords[Random().nextInt(fiveLetterWords.length)].toLowerCase());
+      solution = Word.fromString(fiveLetterWords[Random().nextInt(fiveLetterWords.length)].toUpperCase());
 
       keyboardLetters.clear();
     });
