@@ -27,36 +27,6 @@ class ScreenState extends State<HomeScreen> {
   final Set<Letter> keyboardLetters = {};
 
   @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: [
-
-  //         const Padding(
-  //           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-  //           child: Text(
-  //             'Wordle',
-  //             style: TextStyle(
-  //               fontSize: 52,
-  //               fontWeight: FontWeight.bold,
-  //               letterSpacing: 4,
-  //           ))
-  //         ),
-
-  //         Board(board: board),
-
-  //         const SizedBox(height: 80),
-
-  //         Keyboard(onKeyTapped: onKeyTapped,
-  //                  onDeleteTapped: onDeleteTapped,
-  //                  onEnterTapped: onEnterTapped,
-  //                  letters: keyboardLetters)
-  //       ],
-  //     )
-  //   );
-  // }
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
