@@ -33,12 +33,12 @@ jobs:
         working-directory: ./wordle
         run: flutter build web
 
-  deploy:
-    steps:
-      run: pwd
-      - name: Web Deploy
-        working-directory: ./.github/workflow
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./app/build/web/
+  # deploy:
+  #   steps:
+  #     run: pwd
+  #     - name: Web Deploy
+  #       working-directory: ./.github/workflow
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./app/build/web/
