@@ -6,7 +6,12 @@ on:
 
 jobs:
   build:
+    name: Build Phase
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./wordle
 
     steps:
       # Clones source code repo
@@ -19,15 +24,27 @@ jobs:
 
       # Makes sure all Flutter dependancies are installed
       - name: install app dependencies
-        working-directory: ./wordle
         run: flutter pub get
 
       # Runs Smoke Tests
       - name: Run tests
-        working-directory: ./wordle
         run: flutter test
 
       # Builds Web Version
       - name: Build flutter web
-        working-directory: ./wordle
         run: flutter build web
+
+######################################################################
+
+  deploy:
+    name: Deploy Phase
+    runs-on: ubuntu-latest
+
+    steps:
+      run: pwd
+      - name: Web Deploy
+        working-directory: ./.github/workflow
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./app/build/web/
