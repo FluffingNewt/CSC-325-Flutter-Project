@@ -30,21 +30,29 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      # Builds Web Version
+      # Builds Web App
       - name: Build flutter web
         run: flutter build web
 
-######################################################################
-
-  deploy:
-    name: Deploy Phase
-    runs-on: ubuntu-latest
-
-    steps:
-      run: pwd
+      # Deploys Web App
       - name: Web Deploy
         working-directory: ./.github/workflow
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./app/build/web/
+          publish_dir: ./wordle/build/web/
+
+######################################################################
+
+  # deploy:
+  #   name: Deploy Phase
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     run: pwd
+  #     - name: Web Deploy
+  #       working-directory: ./.github/workflow
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./app/build/web/
