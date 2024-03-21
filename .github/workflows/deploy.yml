@@ -1,1 +1,16 @@
+name: Flutter We App Deploy Phase
 
+on:
+  workflow_call:
+    branches: [ "GitAction-Deploy" ]
+
+jobs:
+  deploy:
+    steps:
+      run: pwd
+      - name: Web Deploy
+        working-directory: ./.github/workflow
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./wordle/build/web/
