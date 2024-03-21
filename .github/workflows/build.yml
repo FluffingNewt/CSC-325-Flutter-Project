@@ -3,7 +3,7 @@ name: Main Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "GitAction-Deploy" ]
 
 jobs:
   build:
