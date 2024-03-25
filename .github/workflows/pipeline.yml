@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build_deploy:
     name: Build & Deploy Phase
 
     runs-on: ubuntu-latest
