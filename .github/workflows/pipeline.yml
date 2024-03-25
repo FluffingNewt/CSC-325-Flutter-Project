@@ -2,7 +2,7 @@ name: Main Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "GitAction-Deploy" ]
 
 jobs:
   build:
@@ -36,7 +36,6 @@ jobs:
 
       # Deploys Web App
       - name: Web Deploy
-        # working-directory: ./.github/workflow
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
