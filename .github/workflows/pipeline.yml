@@ -5,8 +5,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: Build Phase
+  build_deploy:
+    name: Build & Deploy Phase
+
     runs-on: ubuntu-latest
 
     defaults:
@@ -14,8 +15,9 @@ jobs:
         working-directory: ./wordle
 
     steps:
+
       # Clones source code repo
-      - name: checkout repo
+      - name: clone repo
         uses: actions/checkout@v4
 
       # Installs Flutter
@@ -36,27 +38,8 @@ jobs:
       - name: build flutter web
         run: flutter build web
 
-      # Uploads Build Artifacts
-      - name: upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: web-assets
-          path: ./wordle/build/web/
-  
-  deploy:
-    name: Deploy Phase
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      # Downloads Build Artifacts
-      - name: download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: web-assets
-      
       # Deploys Web App
-      - name: Web Deploy
+      - name: deploy flutter web
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
