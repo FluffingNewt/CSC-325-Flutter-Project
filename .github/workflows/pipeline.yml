@@ -1,0 +1,60 @@
+name: Main Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build Phase
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./wordle
+
+    steps:
+      # Clones source code repo
+      - uses: actions/checkout@v4
+
+      # Installs Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'beta'
+
+      # Makes sure all Flutter dependancies are installed
+      - name: install app dependencies
+        run: flutter pub get
+
+      # Runs Smoke Tests
+      - name: Run tests
+        run: flutter test
+
+      # Builds Web App
+      - name: Build flutter web
+        run: flutter build web
+
+      # Deploys Web App
+      - name: Web Deploy
+        # working-directory: ./.github/workflow
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./wordle/build/web/
+
+######################################################################
+
+  # deploy:
+  #   name: Deploy Phase
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     run: pwd
+  #     - name: Web Deploy
+  #       working-directory: ./.github/workflow
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./app/build/web/
+
+# use upload and download artifact for a separate job
