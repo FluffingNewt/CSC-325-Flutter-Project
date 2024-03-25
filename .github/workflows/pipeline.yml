@@ -6,7 +6,8 @@ on:
 
 jobs:
   build:
-    name: Build Phase
+    name: Build & Deploy Phase
+
     runs-on: ubuntu-latest
 
     defaults:
@@ -14,11 +15,14 @@ jobs:
         working-directory: ./wordle
 
     steps:
+
       # Clones source code repo
-      - uses: actions/checkout@v4
+      - name: clone repo
+        uses: actions/checkout@v4
 
       # Installs Flutter
-      - uses: subosito/flutter-action@v2
+      - name: install flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: 'beta'
 
@@ -27,34 +31,16 @@ jobs:
         run: flutter pub get
 
       # Runs Smoke Tests
-      - name: Run tests
+      - name: run smoke tests
         run: flutter test
 
       # Builds Web App
-      - name: Build flutter web
+      - name: build flutter web
         run: flutter build web
 
       # Deploys Web App
-      - name: Web Deploy
-        # working-directory: ./.github/workflow
+      - name: deploy flutter web
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./wordle/build/web/
-
-######################################################################
-
-  # deploy:
-  #   name: Deploy Phase
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     run: pwd
-  #     - name: Web Deploy
-  #       working-directory: ./.github/workflow
-  #       uses: peaceiris/actions-gh-pages@v3
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         publish_dir: ./app/build/web/
-
-# use upload and download artifact for a separate job
