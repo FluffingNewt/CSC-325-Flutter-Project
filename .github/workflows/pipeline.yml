@@ -15,10 +15,12 @@ jobs:
 
     steps:
       # Clones source code repo
-      - uses: actions/checkout@v4
+      - name: checkout repo
+        uses: actions/checkout@v4
 
       # Installs Flutter
-      - uses: subosito/flutter-action@v2
+      - name: install flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: 'beta'
 
@@ -27,34 +29,35 @@ jobs:
         run: flutter pub get
 
       # Runs Smoke Tests
-      - name: Run tests
+      - name: run smoke tests
         run: flutter test
 
       # Builds Web App
-      - name: Build flutter web
+      - name: build flutter web
         run: flutter build web
 
+      # Uploads Build Artifacts
+      - name: upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-assets
+          path: ./wordle/build/web/
+  
+  deploy:
+    name: Deploy Phase
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      # Downloads Build Artifacts
+      - name: download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: web-assets
+      
       # Deploys Web App
       - name: Web Deploy
-        # working-directory: ./.github/workflow
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./wordle/build/web/
-
-######################################################################
-
-  # deploy:
-  #   name: Deploy Phase
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     run: pwd
-  #     - name: Web Deploy
-  #       working-directory: ./.github/workflow
-  #       uses: peaceiris/actions-gh-pages@v3
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         publish_dir: ./app/build/web/
-
-# use upload and download artifact for a separate job
